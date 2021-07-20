@@ -54,6 +54,8 @@ resource "oci_mysql_mysql_db_system" "test_mysql_db_system" {
   shape_name          = "VM.Standard.E2.2"
   subnet_id           = oci_core_subnet.test_subnet.id
 
+  dataStorageSizeInGBs = "50"
+
   #Optional
   backup_policy {
     is_enabled        = "false"    # BACKUP ENABLED FALSE
