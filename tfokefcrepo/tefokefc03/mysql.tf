@@ -14,9 +14,9 @@ resource "oci_core_subnet" "test_subnet" {
 
 
 ############# BACKUP ############################
-resource "oci_mysql_mysql_backup" "test_mysql_backup" {
-  db_system_id = oci_mysql_mysql_db_system.test_mysql_backup_db_system.id
-}
+#resource "oci_mysql_mysql_backup" "test_mysql_backup" {
+#  db_system_id = oci_mysql_mysql_db_system.test_mysql_backup_db_system.id
+#}
 
 
 
@@ -25,20 +25,21 @@ resource "oci_mysql_mysql_backup" "test_mysql_backup" {
 
 
 ############# BACKUP DB ##########################
-resource "oci_mysql_mysql_db_system" "test_mysql_backup_db_system" {
-  #Required
-  admin_password      = "BEstrO0ng_#11"
-  admin_username      = "adminUser"
-  availability_domain = data.oci_identity_availability_domains.test_availability_domains.availability_domains[0].name
-  #compartment_id      = var.compartment_ocid
-  compartment_id      = var.compartment_id
-  configuration_id    = data.oci_mysql_mysql_configurations.test_mysql_configurations.configurations[0].id
-  shape_name          = "VM.Standard.E2.2"
-  subnet_id           = oci_core_subnet.test_subnet.id
+############# BACKUP DB ##########################
+#resource "oci_mysql_mysql_db_system" "test_mysql_backup_db_system" {
+#  #Required
+#  admin_password      = "BEstrO0ng_#11"
+#  admin_username      = "adminUser"
+#  availability_domain = data.oci_identity_availability_domains.test_availability_domains.availability_domains[0].name
+#  #compartment_id      = var.compartment_ocid
+#  compartment_id      = var.compartment_id
+#  configuration_id    = data.oci_mysql_mysql_configurations.test_mysql_configurations.configurations[0].id
+#  shape_name          = "VM.Standard.E2.2"
+#  subnet_id           = oci_core_subnet.test_subnet.id
 
   #Optional
-  data_storage_size_in_gb = "50"
-}
+#  data_storage_size_in_gb = "50"
+#}
 
 
 
