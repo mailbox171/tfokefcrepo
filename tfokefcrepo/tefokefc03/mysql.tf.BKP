@@ -1,34 +1,3 @@
-# Source from https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/core_security_list
-
-############# SECURITY LIST #######################
-resource "oci_core_security_list" "priv_sec_list" {
-# Required
-  compartment_id = var.compartment_id
-  vcn_id = module.oke.vcn_id
-
-# Optional
-  display_name = "seclist-for-mysql-private-subnet"
-  
-  egress_security_rules {
-      stateless = false
-      destination = "0.0.0.0/0"
-      destination_type = "CIDR_BLOCK"
-      protocol = "all" 
-  }
-
-ingress_security_rules { 
-      stateless = false
-      source = "10.0.0.0/16"
-      source_type = "CIDR_BLOCK"
-      # Get protocol numbers from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml TCP is 6
-      protocol = "all"
-      tcp_options { 
-          min = 22
-          max = 22
-      }
-  }
-}
-
 
 
 ############# SUBNET ############################
@@ -38,8 +7,8 @@ resource "oci_core_subnet" "test_subnet" {
   compartment_id = var.compartment_id
   #vcn_id         = oci_core_vcn.test_vcn.id          #### NEED VCN ID <<<<<<<<<<<<<<<<<<< #######
   vcn_id         = module.oke.vcn_id 
-  security_list_ids  = [oci_core_security_list_priv_sec_list.id]
 }
+
 
 
 
@@ -48,6 +17,9 @@ resource "oci_core_subnet" "test_subnet" {
 #resource "oci_mysql_mysql_backup" "test_mysql_backup" {
 #  db_system_id = oci_mysql_mysql_db_system.test_mysql_backup_db_system.id
 #}
+
+
+
 
 
 
