@@ -21,7 +21,7 @@ ingress_security_rules {
       source = "10.0.0.0/16"
       source_type = "CIDR_BLOCK"
       # Get protocol numbers from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml TCP is 6
-      protocol = "all"
+      protocol = "6"
       tcp_options { 
           min = 22
           max = 22
