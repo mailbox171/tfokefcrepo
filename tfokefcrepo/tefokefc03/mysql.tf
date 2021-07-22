@@ -23,8 +23,8 @@ ingress_security_rules {
       # Get protocol numbers from https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml TCP is 6
       protocol = "6"
       tcp_options { 
-          min = 22
-          max = 22
+          min = 3000
+          max = 39999
       }
   }
 }
